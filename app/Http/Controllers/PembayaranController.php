@@ -15,9 +15,10 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $data = Pembayaran::with('user')->where('user_id', Auth::user()->id)->get();
+        $userId = Auth::id();
+        $pembayarans = Pembayaran::where('user_id', $userId)->get();
         $data = myHelpers::getAllMonths();
-        return view('Transaksi.transaksi', compact('data'));
+        return view('Transaksi.transaksi', compact('pembayarans', 'data'));
     }
 
     /**

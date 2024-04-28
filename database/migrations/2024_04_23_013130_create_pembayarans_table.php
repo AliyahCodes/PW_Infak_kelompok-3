@@ -13,14 +13,13 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id');
             $table->foreignId('user_id');
             $table->string("nama_bank")->nullable();
             $table->string("pemilik_bank");
             $table->string("nominal");
             $table->string('bukti_pembayaran');
             $table->boolean('status');
-            $table->string('bulan');
+            $table->string('bulan')->nullable();
             $table->timestamps();
         });
     }

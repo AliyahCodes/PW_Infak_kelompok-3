@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class User extends Authenticatable
 {
@@ -30,9 +32,10 @@ class User extends Authenticatable
       
    ];
    
-    public function pembayaran(){
-        return $this->hasMany(Pembayaran::class);
-    }
+   public function pembayarans(): HasMany
+   {
+       return $this->hasMany(Pembayaran::class, 'user_id', 'id');
+   }
 
     /**
      * The attributes that should be hidden for serialization.

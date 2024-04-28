@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Pembayaran extends Model
 {
@@ -16,7 +19,6 @@ class Pembayaran extends Model
         'bukti_pembayaran',
         'status',
         'done_time',
-        'siswa_id',
         'user_id',
         'bulan',
      
