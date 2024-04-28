@@ -84,8 +84,29 @@
                 return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
             }
 
+<<<<<<< HEAD
             document.querySelector('input[name="nominal_perjanjian"]').addEventListener('input', function() {
                 let nominal = this.value;
+=======
+          @foreach ($data as $monthNumber => $monthName)
+          <tr>
+            <td>{{ $loop->iteration }}</td>
+                <td></td>
+                <td>{{ $monthName }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+              <a href="/admin/transaksi/store" class="btn btn-primary mt-2">Bayar</a>
+              {{-- <form action="/User/delete/" method="POST"  class="mt-2">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger mt-2">Hapus</button>
+            </form> --}}
+            </td>
+          </tr>
+          @endforeach
+>>>>>>> 0d9ff5f5662ad81dd79c63387c38060fd4af40d5
 
                 nominal = nominal.replace(/\./g, '');
 

@@ -11,7 +11,7 @@
     <div class="card-header">
       <h4>User</h4>
       <div class="card-header-action">
-        <a href="/User/create" class="btn btn-danger">Tambah Data <i class="fas fa-chevron-right"></i></a>
+        <a href="/user/create" class="btn btn-danger">Tambah Data <i class="fas fa-chevron-right"></i></a>
       </div>
     </div>
     <div class="card-body p-0">
@@ -32,12 +32,14 @@
             <td>{{$item->email}}</td>
             <td>{{$item->role}}</td>
             <td>
-              <a href="/User/edit/{{$item->id}}" class="btn btn-primary mt-2">Edit</a>
-              <form action="/User/delete/{{$item->id}}" method="POST"  class="mt-2">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger mt-2">Hapus</button>
-            </form>
+              <div class="btn-group">
+                <a href="/user/{{$item->id}}/edit" class="btn btn-primary mt-2">Edit</a>
+                <form action="{{ route('delete.user', $item->id) }}" method="POST" class="mt-2">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+              </div>
             </td>
           </tr>
 
@@ -46,6 +48,6 @@
         </table>
       </div>
     </div>
-
+</div>
 
 @endsection

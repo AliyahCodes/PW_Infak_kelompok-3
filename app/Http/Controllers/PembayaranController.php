@@ -33,7 +33,7 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('Transaksi.store');
     }
 
     /**

@@ -10,7 +10,7 @@ class NominalController extends Controller
 {
     public function index()
     {
-        $data = User::where('role', 1)->get();
+        $data = User::all();
         return view('User.User', compact('data'));
     }
 
