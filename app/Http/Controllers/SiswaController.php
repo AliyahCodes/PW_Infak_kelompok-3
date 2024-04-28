@@ -26,6 +26,7 @@ class SiswaController extends Controller
         return view('Siswa.Create');
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -61,6 +62,36 @@ class SiswaController extends Controller
 
        
     }
+    
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'nis' => 'required',
+        'nama_lengkap' => 'required',
+        'rombel' => 'required',
+        'rayon' => 'required',
+        'email'=> 'required|unique:users,email,'.$id,
+        'no_phone_orang_tua' => 'required',
+    ]);
+
+    // Temukan data siswa yang ingin diperbarui
+    $siswa = User::findOrFail($id);
+
+    // Perbarui atribut-atributnya satu per satu
+    $siswa->nis = $request->nis;
+    $siswa->nama_lengkap = $request->nama_lengkap;
+    $siswa->rombel = $request->rombel;
+    $siswa->rayon = $request->rayon;
+    $siswa->email = $request->email;
+    $siswa->no_phone_orang_tua = $request->no_phone_orang_tua;
+
+    // Simpan perubahan
+    $siswa->save();
+
+    // Redirect setelah berhasil dengan pesan sukses
+    return redirect('data-siswa')->with('successAdd', 'Berhasil mengupdate data siswa!');
+}
+
 
     /**
      * Display the specified resource.
@@ -73,25 +104,33 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Siswa $siswa)
+    public function edit($id)
     {
-        //
+        $siswa = User::find($id);
+        return view('Siswa.edit', compact('siswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Siswa $siswa)
-    {
-        //
-    }
+    // public function update(Request $request, Siswa $siswa)
+    // {
+    //     //
+    // }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Siswa $siswa)
+    public function destroy($id)
     {
-        //
+        // Temukan data siswa yang ingin dihapus
+        $siswa = User::findOrFail($id);
+        
+        // Lakukan penghapusan data siswa
+        $siswa->delete();
+        
+        // Redirect setelah berhasil dengan pesan sukses
+        return redirect('data-siswa')->with('successDelete','Berhasil menghapus data siswa!');
     }
 
     

@@ -104,12 +104,12 @@
             <td></td>
             <td></td>
             <td>
-              <a href="/User/edit/" class="btn btn-primary mt-2">Edit</a>
-              <form action="/User/delete/" method="POST"  class="mt-2">
+              <a href="/admin/transaksi/store" class="btn btn-primary mt-2">Bayar</a>
+              {{-- <form action="/User/delete/" method="POST"  class="mt-2">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger mt-2">Hapus</button>
-            </form>
+            </form> --}}
             </td>
           </tr>
           @endforeach
