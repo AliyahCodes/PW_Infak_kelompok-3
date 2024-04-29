@@ -24,7 +24,7 @@
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama </label>
                 <div class="col-sm-12 col-md-7">
-                  <input type="text" placeholder="Masukan Nama" name="name" class="form-control">
+                  <input type="text" placeholder="Masukan Nama" name="nama_lengkap" class="form-control">
                 </div>
               </div>
            
@@ -57,7 +57,7 @@
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                 <div class="col-sm-12 col-md-7">
                   <button type="submit" class="btn btn-primary">Create</button>
-                  <a href="/User" class="btn btn-primary">Kembali</a>
+                  <a href="" class="btn btn-primary">Kembali</a>
                 </div>
               </div>
 

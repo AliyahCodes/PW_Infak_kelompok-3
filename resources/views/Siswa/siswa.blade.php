@@ -4,7 +4,6 @@
 @section('text', 'Data Siswa')
 
 @section('content')
-    
 
 <div class="card">
     <div class="card-header">
@@ -35,22 +34,20 @@
             <td>{{$item->rayon}}</td>
             <td>{{$item->nominal_perjanjian}}</td>
             <td>
-              <a href="/User/edit/" class="btn btn-primary mt-2">Edit</a>
-              <form action="/User/delete/" method="POST"  class="mt-2">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger mt-2">Hapus</button>
-            </form>
+              <div class="btn-group">
+                <a href="/siswa/{{$item->id}}/edit" class="btn btn-primary mt-2">Edit</a>
+                <form action="{{ route('delete_siswa', $item->id) }}" method="POST" class="mt-2">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">Hapus</button>
+                </form>
+              </div>
             </td>
           </tr>
           @endforeach
-
-          
-
         </table>
       </div>
     </div>
+</div>
 
-
-    
 @endsection

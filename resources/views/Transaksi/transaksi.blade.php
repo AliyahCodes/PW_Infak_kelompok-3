@@ -5,154 +5,149 @@
 
 @section('content')
 
-
-@if (auth()->user()->nominal_perjanjian == 0 && auth()->user()->role == 1)
-        <div class="main-content">
-            <section class="section">
-                <div class="section-body">
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-6">
-                            <div class="modal-dialog m-0" role="document">
-                                <div class="modal-content">
-
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4>Info !</h4>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="mb-2">Maaf, Anda belum mengisi nominal perjanjian infak Anda. Untuk
-                                                melanjutkan, kami memerlukan informasi ini. Silakan lengkapi formulir dengan
-                                                jumlah nominal yang ingin Anda janjikan sebagai infak untuk setiap bulannya.
-                                                Terima kasih atas kerja sama Anda.</p>
-                                            </p>
-                                            <button class="btn btn-primary" data-toggle="modal"
-                                                data-target="#exampleModal">Lengkapi Formulir Perjanjian Infak</button>
-                                        </div>
+@if (auth()->user()->nominal_perjanjian == 0 && auth()->user()->role == 'user')
+    <!-- Jika nominal perjanjian infak user adalah 0 -->
+    <div class="main-content">
+        <section class="section">
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="modal-dialog m-0" role="document">
+                            <div class="modal-content">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Info !</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="mb-2">Maaf, Anda belum mengisi nominal perjanjian infak Anda. Untuk
+                                            melanjutkan, kami memerlukan informasi ini. Silakan lengkapi formulir dengan
+                                            jumlah nominal yang ingin Anda janjikan sebagai infak untuk setiap bulannya.
+                                            Terima kasih atas kerja sama Anda.</p>
+                                        <button class="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModal">Lengkapi Formulir Perjanjian Infak</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Isi form dibawah ini!</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('nominal_form') }}" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label>Nominal</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                Rp
-                                            </div>
+        <!-- Modal untuk mengisi formulir perjanjian infak -->
+        <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Isi form dibawah ini!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('nominal_form') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label>Nominal</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            Rp
                                         </div>
-                                        <input type="text" name="nominal_perjanjian" class="form-control currency">
                                     </div>
+                                    <input type="text" name="nominal_perjanjian" class="form-control currency">
                                 </div>
-                        </div>
-                        <div class="modal-footer bg-whitesmoke br">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
                             <button type="submit" class="btn btn-primary">Save changes</button>
-                        </div>
                         </form>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            window.onload = function() {
-                @if (session('login_success')) // Periksa apakah login berhasil
-                    $('#exampleModal').modal('show'); // Munculkan modal jika login berhasil
-                @endif
-            };
-        </script>
-    @else
-        <div class="card">
-            <div class="card-header">
-                <h4>User</h4>
-            </div>
-            <div class="card-body p-0">
-                <div class="table-responsive table-invoice">
-                    <table class="table table-striped">
+    <script>
+        window.onload = function() {
+            @if (session('login_success')) // Periksa apakah login berhasil
+                $('#exampleModal').modal('show'); // Munculkan modal jika login berhasil
+            @endif
+        };
+    </script>
+@else
+    <!-- Jika nominal perjanjian infak user tidak sama dengan 0 -->
+    <div class="card">
+        <div class="card-header">
+            <h4>Data Tagihan</h4>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive table-invoice">
+                <table class="table table-striped">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Nis</th>
+                        <th>Bulan</th>
+                        <th>Tanggal Bayar</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                        <th>Action</th>
+                    </tr>
+
+                    
+                    @foreach ($data as $monthNumber => $monthName)
                         <tr>
-                            <th>No</th>
-                            <th>Nis</th>
-                            <th>Bulan</th>
-                            <th>Tanggal Bayar</th>
-                            <th>Jumlah</th>
-                            <th>Keterangan</th>
-                            <th>Action</th>
-                        </tr>
-                            @foreach ($data as $monthNumber => $monthName)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ Auth::user()->nis }}</td>
-                                <td>{{ $monthName }}</td>
-                                <td>
-                                    @foreach ($pembayarans as $pembayaran)
-                                        @if (\Carbon\Carbon::parse($pembayaran->done_time)->format('m') == $monthNumber + 1)
-                                            {{ \Carbon\Carbon::parse($pembayaran->done_time)->format('d F Y') }}
-                                        @endif
-                                    @endforeach
-                                </td>
-                                <td>
-                                    {{ Auth::user()->nominal_perjanjian }}
-                                </td>
-                                <td>
-                                    @php
-                                    $status = 'Belum dibayar'; // Default status
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{Auth::user()->nama_lengkap}}</td>
+                            <td>{{ Auth::user()->nis }}</td>
+                            <td>{{ $monthName }}</td>
+                            <td>
+                                @if ($loop->first)
+                                    {{ $pembayaran->tanggal_pembayaran ?? '-' }}
+                                @endif
+                            </td>
+                            <td>
+                                {{ Auth::user()->nominal_perjanjian }}
+                            </td>
+                            <td>
+                                @php
+                                    $status = 'Belum dibayar';
                                 @endphp
                                 @foreach ($pembayarans as $pembayaran)
-                                    @if (\Carbon\Carbon::parse($pembayaran->done_time)->format('m') == $monthNumber + 1)
-                                        @if ($pembayaran->status == 'selesai')
-                                            @php
-                                                $status = 'Selesai';
-                                            @endphp
-                                        @elseif ($pembayaran->status == 'proses')
-                                            @php
-                                                $status = 'Proses';
-                                            @endphp
-                                        @elseif ($pembayaran->status == 'pending')
-                                            @php
-                                                $status = 'Pending';
-                                            @endphp
-                                        @endif
+                                    @if ($pembayaran->status == 1)
+                                        @php
+                                            $status = 'Lunas';
+                                        @endphp
+                                    @elseif ($pembayaran->status == 0)
+                                        @php
+                                            $status = 'Menunggu Verfikasi';
+                                        @endphp
                                     @endif
                                 @endforeach
                                 {{ $status }}
-
-                                </td>
-                                <td>
-                                     <a href="/User/edit/{{ $monthNumber + 1 }}" class="btn btn-primary mt-2">Bayar</a>
-                                    {{-- <a href="/User/edit/{{ $monthNumber + 1 }}" class="btn btn-primary mt-2">Edit</a>
+                            </td>
+                            <td>
+                                @foreach ($pembayarans as $pembayaran)
+                                @if ($status == 'Belum dibayar')
+                                    <a href="/admin/transaksi/create/{{ $pembayaran->id }}" class="btn btn-primary mt-2">Bayar</a>
+                                @else
+                                    <a href="/User/edit/{{ $monthNumber + 1 }}" class="btn btn-primary mt-2">Batal</a>
                                     <form action="/User/delete/{{ $monthNumber + 1 }}" method="POST" class="mt-2">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger mt-2">Hapus</button>
-                                    </form> --}}
-                                </td>
-                            </tr>
-                        @endforeach
-                    </table>
-
-                </div>
+                                        <button type="submit" class="btn btn-danger mt-2">Unduh</button>
+                                    </form>
+                                @endif
+                            @endforeach
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
             </div>
-
-    @endif
-
-
-
-
+        </div>
+    </div>
+@endif
 
 @endsection

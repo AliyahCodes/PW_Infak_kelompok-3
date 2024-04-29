@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 class myHelpers
 {
-    public static function getMonthName($monthNumber)
+    public static function getMonthName($monthNumber, $year = 2024)
     {
         $months = [
             1 => 'Januari',
@@ -21,12 +21,18 @@ class myHelpers
             12 => 'Desember',
         ];
 
-        return $months[$monthNumber];
+        $monthName = $months[$monthNumber];
+
+        if ($year) {
+            $monthName .= ' ' . $year;
+        }
+
+        return $monthName;
     }
 
-    public static function getAllMonths()
+    public static function getAllMonths($year = 2024)
     {
-        return [
+        $months = [
             1 => 'Januari',
             2 => 'Februari',
             3 => 'Maret',
@@ -40,5 +46,13 @@ class myHelpers
             11 => 'November',
             12 => 'Desember',
         ];
+
+        if ($year) {
+            foreach ($months as $monthNumber => $monthName) {
+                $months[$monthNumber] = $monthName . ' ' . $year;
+            }
+        }
+
+        return $months;
     }
 }

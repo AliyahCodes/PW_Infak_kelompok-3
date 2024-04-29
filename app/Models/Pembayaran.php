@@ -18,7 +18,7 @@ class Pembayaran extends Model
         'nominal',
         'bukti_pembayaran',
         'status',
-        'done_time',
+        'tanggal_pembayaran',
         'user_id',
         'bulan',
      

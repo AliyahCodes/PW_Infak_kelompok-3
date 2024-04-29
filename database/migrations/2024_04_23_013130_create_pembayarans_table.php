@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string("pemilik_bank");
             $table->string("nominal");
             $table->string('bukti_pembayaran');
+            $table->string('tanggal_pembayaran');
             $table->boolean('status');
             $table->string('bulan')->nullable();
+            // $table->date('done_time')->nullable();
             $table->timestamps();
         });
     }
