@@ -39,9 +39,9 @@ class PembayaranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pembayaran $pembayaran)
+    public function show()
     {
-        //
+        return view('admin.verifuser');
     }
 
     /**

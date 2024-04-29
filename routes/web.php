@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/perjanjian', [NominalController::class, 'nominal_form'])->name('nominal_form');
 
     Route::get('transaksi', [PembayaranController::class, 'index']);
+    Route::get('/admin/verif', [PembayaranController::class, 'show']);
     Route::get('/admin/transaksi/store', [PembayaranController::class, 'store']);
 
     // routes/web.php
