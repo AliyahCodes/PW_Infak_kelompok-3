@@ -105,7 +105,7 @@
                             <td>{{ $monthName }}</td>
                             <td>
                                 @if ($loop->first)
-                                    {{ $pembayaran->tanggal_pembayaran ?? '-' }}
+                                    {{ $pembayaran->tanggal_pembayaran }}
                                 @endif
                             </td>
                             <td>
@@ -116,10 +116,15 @@
                                     $status = 'Belum dibayar';
                                 @endphp
                                 @foreach ($pembayarans as $pembayaran)
-                                    @if ($pembayaran->status == 1)
+                                    @if ($pembayaran->status == 2)
+                                        @php
+                                            $status = 'Verifikasi di tolak';
+                                        @endphp
+                                    @elseif ($pembayaran->status == 1)
                                         @php
                                             $status = 'Lunas';
                                         @endphp
+
                                     @elseif ($pembayaran->status == 0)
                                         @php
                                             $status = 'Menunggu Verfikasi';
@@ -129,18 +134,16 @@
                                 {{ $status }}
                             </td>
                             <td>
-                                @foreach ($pembayarans as $pembayaran)
                                 @if ($status == 'Belum dibayar')
-                                    <a href="/admin/transaksi/create/{{ $pembayaran->id }}" class="btn btn-primary mt-2">Bayar</a>
-                                @else
+                                    <a href="/admin/transaksi/create" class="btn btn-primary mt-2">Bayar</a>
+                                @elseif ($status == '1')
                                     <a href="/User/edit/{{ $monthNumber + 1 }}" class="btn btn-primary mt-2">Batal</a>
-                                    <form action="/User/delete/{{ $monthNumber + 1 }}" method="POST" class="mt-2">
+                                    {{-- <form action="/User/delete/{{ $monthNumber + 1 }}" method="POST" class="mt-2">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger mt-2">Unduh</button>
-                                    </form>
+                                        <button type="submit" class="btn btn-danger mt-2">Download</button>
+                                    </form> --}}
                                 @endif
-                            @endforeach
                             </td>
                         </tr>
                     @endforeach

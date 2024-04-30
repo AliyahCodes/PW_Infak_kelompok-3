@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\NominalController;
 use App\Http\Controllers\DashboardController;
@@ -48,18 +49,24 @@ Route::middleware('auth')->group(function () {
     Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('update.siswa');
     Route::delete('/siswa/{id}', [SiswaController::class, 'destroy'])->name('delete_siswa');
 
-    
-    
 
-    // Route::get('/perjanjian', [NominalController::class, 'perjanjian']);
+
     Route::post('/perjanjian', [NominalController::class, 'nominal_form'])->name('nominal_form');
 
     Route::get('transaksi', [PembayaranController::class, 'index'])->name('transaksi');
 
-    Route::get('/admin/transaksi/create/{$id}', [PembayaranController::class, 'create']);
-    Route::post('/admin/transaksi/store/{$id}', [PembayaranController::class, 'store'])->name('pembayaran.form');
+    Route::get('/admin/transaksi/create', [PembayaranController::class, 'create']);
+    Route::post('/admin/transaksi/store', [PembayaranController::class, 'store'])->name('pembayaran.form');
 
-    // routes/web.php
+    Route::get('transaksi', [PembayaranController::class, 'index']);
+    Route::get('/admin/transaksi/store', [PembayaranController::class, 'store']);
+
+    Route::get('/admin/pembayaran', [AdminController::class, 'admin_pembayaran'])->name('admin.pembayaran');
+    Route::get('/admin/detail/{pembayaran:user_id}', [AdminController::class, 'detail_pembayaran'])->name('detail.pembayaran');
+    Route::patch('/admin/validasi/{pembayaran:user_id}', [AdminController::class, 'validasi'])->name('validasi.detail');
+    Route::patch('/admin/tolak/{pembayaran:user_id}', [AdminController::class, 'tolak'])->name('tolak.detail');
+
+
     Route::get('/export-pdf', 'ExportPdfController@export')->name('export.pdf');
 
 

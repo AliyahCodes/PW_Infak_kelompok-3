@@ -11,14 +11,14 @@
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-statistic-2">
           <div class="card-icon shadow-primary bg-primary">
-            <i class="fas fa-archive"></i>
+            <i class="fas fa-user"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Total Orders</h4>
+              <h4>Total User</h4>
             </div>
             <div class="card-body">
-              59
+              {{$user}}
             </div>
           </div>
         </div>
@@ -30,10 +30,10 @@
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Balance</h4>
+              <h4>Jumlah nominal transaksi hari ini</h4>
             </div>
             <div class="card-body">
-              $187,13
+              Rp. {{$nominal}}
             </div>
           </div>
         </div>
@@ -42,14 +42,14 @@
         <div class="card card-statistic-2">
          
           <div class="card-icon shadow-primary bg-primary">
-            <i class="fas fa-shopping-bag"></i>
+            <i class="fas fa-archive"></i>
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>Sales</h4>
+              <h4>User yang melakukan transaksi </h4>
             </div>
             <div class="card-body">
-              4,732
+              {{$pembayaran}}
             </div>
           </div>
         </div>

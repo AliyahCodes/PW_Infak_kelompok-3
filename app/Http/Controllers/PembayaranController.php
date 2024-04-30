@@ -24,7 +24,7 @@ class PembayaranController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($id)
+    public function create()
     {
       $semuaBulan = myHelpers::getAllMonths();
       return view('Transaksi.store', compact('semuaBulan'));
@@ -34,7 +34,7 @@ class PembayaranController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
         $request->validate([
             'nama_bank' => 'required',
@@ -76,7 +76,7 @@ class PembayaranController extends Controller
                 'bukti_pembayaran' => $newName,
                 'tanggal_pembayaran' => $tanggalPembayaran,
                 'bulan' => $namaBulan,
-                'status' => 1,
+                'status' => 0,
                 'user_id' => Auth::user()->id,
             ]);
         }
@@ -104,7 +104,7 @@ class PembayaranController extends Controller
                 'bukti_pembayaran' => $newName,
                 'tanggal_pembayaran' => $tanggalPembayaranSisa,
                 'bulan' => $namaBulan,
-                'status' => 1,
+                'status' => 0,
                 'user_id' => Auth::user()->id,
             ]);
         }
@@ -115,9 +115,8 @@ class PembayaranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pembayaran $pembayaran)
+    public function show()
     {
-        //
     }
 
     /**

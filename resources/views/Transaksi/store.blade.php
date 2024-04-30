@@ -25,11 +25,16 @@
 
                                     <div class="col-sm-6 col-md-6">
                                         <div class="form-group row mb-4">
-                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Bank
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Bulan
                                             </label>
                                             <div class="col-sm-12 col-md-7">
-                                                <input type="text" placeholder="Masukan nama bank" name="nama_bank"
-                                                    class="form-control">
+                                                <select name="nama_bank" class="form-control">
+                                                            <option value="BCA" disabled>Pilih Bank</option>
+                                                            <option value="BCA">BCA</option>
+                                                            <option value="BCA">BRI</option>
+                                                            <option value="BCA">BNI</option>
+                                                            <option value="BCA">MANDIRI</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>

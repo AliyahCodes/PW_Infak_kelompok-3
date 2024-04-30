@@ -76,9 +76,13 @@
 
               </li>
               <li class="menu-header">Starter</li>
-                <li><a class="nav-link" href="/transaksi"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
+                @if (auth()->user()->role == 'admin')
+                <li><a class="nav-link" href="/admin/pembayaran"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
                 <li><a class="nav-link" href="/data-siswa"><i class="fas fa-user"></i> <span>Data Siswa</span></a></li>
                 <li><a class="nav-link" href="/data-user"><i class="fas fa-user"></i> <span>User</span></a></li>
+                @else
+                <li><a class="nav-link" href="/transaksi"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
+@endif
         </div>
   
         <!-- Main Content -->

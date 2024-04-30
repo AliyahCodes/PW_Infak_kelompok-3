@@ -17,7 +17,7 @@
         <table class="table table-striped">
           <tr>
             <th>No</th>
-            <th>Nisn</th>
+            <th>Nis</th>
             <th>Nama</th>
             <th>Rombel</th>
             <th>Rayon</th>
