@@ -1,66 +1,115 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## screenshoot hasil project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Login 
+  Penjelasan: Ini adalah halaman login dari aplikasi, di mana pengguna harus memasukkan email dan NIS pengguna sebagai password untuk masuk.
 
-## About Laravel
+  ![login](public/assets/screenshoot/login.png)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Dashboard
+- Admin
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    ![dashboard admin](<public/assets/screenshoot/dashboard Admin.png>)
+- User 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    ![dashboard user](<public/assets/screenshoot/dashboard User.png>)
 
-## Learning Laravel
+## Transaksi | Admin 
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- Transaksi 
+  Penjelasan: Halaman ini menampilkan daftar transaksi pengguna yang perlu diverifikasi oleh admin.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+  ![transaksi admin](<public/assets/screenshoot/Transaksi admin.png>)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Detail
+  Penjelasan: Halaman ini digunakan oleh admin untuk memverifikasi pembayaran pengguna.
 
-## Laravel Sponsors
+    ![detail ferifikasi](<public/assets/screenshoot/detail admin verifikasi.png>)
+    ![detail Verifur](<public/assets/screenshoot/detailadmin ferifur.png>)
+## Transaksi | User
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Transaksi 
+  Jika user belum memiliki nominal infaq untuk dibayarkan setiap bulannya, maka user harus mengisi form nominal perjanjian infaq terlebih dahlu
 
-### Premium Partners
+    ![nominal_perjanjian](<public/assets/screenshoot/perjanjian nominal.png>)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- Form Pengisian Nominal Perjanjian Infaq
+  1. Pada halaman perjanjian pembayaran, isi formulir dengan data yang diperlukan: Jumlah infaq yang akan dibayar setiap bulannya.
 
-## Contributing
+  ![form nominal](<public/assets/screenshoot/form perjanjian.png>)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  2. Setelah mengisi semua data yang diperlukan, klik tombol "Save changes".
+  3. Perjanjian pembayaran Anda akan tersimpan dan akan muncul data tagihan pembayaran infaq Anda.
 
-## Code of Conduct
+  ![transaksi user](public/assets/screenshoot/transaksiuser.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  **Note**: Untuk User yang sudah mengisi nominal perjanjian Infaknya dan sudah melakukan pembayaran
 
-## Security Vulnerabilities
+  ![transaksi user](public/assets/screenshoot/transaksiuser2.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Form Pembayaran infaq
+  1. Pilih bulan yang akan dibayar. Di halaman Transaksi, pilih bulan yang ingin Anda selesaikan pembayarannya, lalu klik button “Bayar”
+  2. Ikuti instruksi yang diberikan untuk melakukan pembayaran. Pastikan Anda melakukan pembayaran sesuai dengan jumlah yang telah disepakati.
+  3. Setelah mengisi semua data yang diperlukan, klik tombol “Bayar”. 
+     Halaman akan kembali ke halaman transaksi, status pembayaran akan berubah menjadi "Menunggu Verifikasi".
+     Anda dapat menunggu verifikasi dari admin apakah diterima atau ditolak. 
+  4. Admin akan memverifikasi pembayaran Anda.
+     Setelah pembayaran diverifikasi, status pembayaran akan berubah menjadi "Lunas".
+     Jika pembayaran di tolak, status pembayaran akan berubah menjadi “Verifikasi ditolak”. Dan Anda perlu melakukan upload bukti pembayaran 
 
-## License
+     ![form pembayaran](<public/assets/screenshoot/form pembayaran.png>)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Unduh Bukti Pembayaran
+  Anda juga memiliki opsi untuk mengunduh data pengguna yang telah melunasi pembayaran infaq ke dalam format file PDF, yang menampilkan data infaq yang sudah lunas per bulan. Berikut langkahnya:
+   1. Buka halaman Transaksi/Riwayat Transaksi 
+   2. Klik Tombol Unduh
+        - Pada halaman tersebut, klik tombol "Unduh".
+        - File PDF yang berisi data pengguna dan infaq yang sudah lunas per bulan akan diunduh secara otomatis.
+
+      ![unduh bukti](<public/assets/screenshoot/unduh bukti.png>)
+
+## List Data Tagihan | Admin 
+   Penjelasan: Mencakup semua data user yang pembayarannya belum dibayar dan atau verifikasi ditolak.
+
+   ![data tagihan](public/assets/screenshoot/datatagihan.png)
+   ![data tagihan 2](public/assets/screenshoot/datatagihan2.png)
+
+## List Riwayat Pembayaran 
+- Admin 
+  **Note:** Data yang ditampilkan adalah data semua pengguna yang sudah melunasi pembayaran infaq mereka.
+
+  ![riwayat pembayaran admin](<public/assets/screenshoot/riwayat pembayaran-admin.png>)
+
+- User 
+  **Note:** Data yang ditampilkan adalah data pengguna yang sudah melunasi pembayaran infaq mereka.
+
+  ![riwayat pembayaran user](<public/assets/screenshoot/riwayat pembayaran-user.png>)
+
+## Data Siswa | Admin
+   Penjelasan: Halaman ini digunakan oleh admin untuk melihat dan mengelola data siswa. Admin dapat menambahkan, mengedit, atau menghapus data siswa sesuai kebutuhan.
+
+   ![data siswa](public/assets/screenshoot/datasiswa.png)
+
+ - Create data siswa
+    Penjelasan: Halaman ini digunakan oleh admin untuk menambahkan data siswa baru ke dalam sistem.
+
+    ![create data siswa](<public/assets/screenshoot/create data-siswa.png>)
+
+ - Edit data siswa
+    Penjelasan: Halaman ini digunakan oleh admin untuk mengedit data siswa yang sudah ada.
+
+    ![edit data siswa](<public/assets/screenshoot/edit data-siswa.png>)
+
+## Data Petugas | Admin
+   Penjelasan: Halaman ini digunakan oleh admin untuk melihat dan mengelola data petugas. Admin dapat menambahkan, mengedit, atau menghapus data petugas sesuai kebutuhan.
+
+   ![data petugas](<public/assets/screenshoot/create data-petugas.png>)
+
+  - Create Data Petugas
+    Penjelasan: Halaman ini digunakan oleh admin untuk menambahkan data petugas baru ke dalam sistem.
+
+    ![create data petugas](<public/assets/screenshoot/create data-petugas.png>)
+
+  - Edit Data Petugas
+    Penjelasan: Halaman ini digunakan oleh admin untuk mengedit data petugas yang sudah ada.
+
+    ![edit data petugas](<public/assets/screenshoot/edit data-petugas.png>)
