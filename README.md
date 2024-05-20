@@ -68,7 +68,7 @@
       ![unduh bukti](<public/assets/screenshoot/unduh bukti.png>)
 
 ## List Data Tagihan | Admin 
-    - Penjelasan: Mencakup semua data user yang pembayarannya belum dibayar dan atau verifikasi ditolak.
+    Penjelasan: Mencakup semua data user yang pembayarannya belum dibayar dan atau verifikasi ditolak.
 
    ![data tagihan](public/assets/screenshoot/datatagihan.png)
    ![data tagihan 2](public/assets/screenshoot/datatagihan2.png)
@@ -85,7 +85,7 @@
   ![riwayat pembayaran user](<public/assets/screenshoot/riwayat pembayaran-user.png>)
 
 ## Data Siswa | Admin
-    - Penjelasan: Halaman ini digunakan oleh admin untuk melihat dan mengelola data siswa. Admin dapat menambahkan, mengedit, atau menghapus data siswa sesuai kebutuhan.
+    Penjelasan: Halaman ini digunakan oleh admin untuk melihat dan mengelola data siswa. Admin dapat menambahkan, mengedit, atau menghapus data siswa sesuai kebutuhan.
 
    ![data siswa](public/assets/screenshoot/datasiswa.png)
 
@@ -101,9 +101,9 @@
     ![edit data siswa](<public/assets/screenshoot/edit data-siswa.png>)
 
 ## Data Petugas | Admin
-    - Penjelasan: Halaman ini digunakan oleh admin untuk melihat dan mengelola data petugas. Admin dapat menambahkan, mengedit, atau menghapus data petugas sesuai kebutuhan.
+    Penjelasan: Halaman ini digunakan oleh admin untuk melihat dan mengelola data petugas. Admin dapat menambahkan, mengedit, atau menghapus data petugas sesuai kebutuhan.
 
-   ![data petugas](<public/assets/screenshoot/create data-petugas.png>)
+   ![data petugas](<public/assets/screenshoot/data petugas.png>)
 
   - Create Data Petugas
     - Penjelasan: Halaman ini digunakan oleh admin untuk menambahkan data petugas baru ke dalam sistem.
@@ -114,3 +114,8 @@
     - Penjelasan: Halaman ini digunakan oleh admin untuk mengedit data petugas yang sudah ada.
 
     ![edit data petugas](<public/assets/screenshoot/edit data-petugas.png>)
+
+## Logout 
+    -Untuk logout, Anda dapat melihat di bagian atas kanan layar dan klik pada nama Anda. Opsi logout akan tersedia setelahnya.
+  ![logout](public/assets/screenshoot/logout.png)
+
