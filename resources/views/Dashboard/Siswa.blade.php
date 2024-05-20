@@ -22,6 +22,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-statistic-2">
           <div class="card-icon shadow-primary bg-primary">
@@ -31,13 +32,13 @@
             <div class="card-header">
               <h4>Nominal Infak perbulan anda</h4>
             </div>
-            <div class="card-body">
-            <h6>Rp. 20000</h6>           
+            <div class="card-body mt-3">
+            <h6>{{$user->nominal_perjanjian}}</h6>           
  </div>
           </div>
         </div>
       </div>
-{{--       
+      
       <div class="col-lg-4 col-md-4 col-sm-12">
         <div class="card card-statistic-2">
          
@@ -46,13 +47,13 @@
           </div>
           <div class="card-wrap">
             <div class="card-header">
-              <h4>User yang melakukan transaksi </h4>
+              <h4>Data Tagihan Anda</h4>
             </div>
-            <div class="card-body">
-              {{$pembayaran}}
+            <div class="card-body mt-3">
+              <h6>{{$pem}} Bulan</h6>
             </div>
           </div>
-        </div> --}}
+        </div>
       </div>
     </div>
 </div>

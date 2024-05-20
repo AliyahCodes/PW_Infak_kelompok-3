@@ -1,17 +1,17 @@
 @extends('layouts.main')
 
-@section('title', 'Create User')
+@section('title', 'Create Petugas')
 
-@section('text', 'Tambah data User')
+@section('text', 'Tambah data Petugas')
     
 
 @section('content')
 
 <section class="section">
     <div class="section-body">
-      <h2 class="section-title">Tambah User Baru</h2>
+      <h2 class="section-title">Tambah Petugas Baru</h2>
       <p class="section-lead">
-        Di halaman ini Anda dapat menambahkan data user baru
+        Di halaman ini Anda dapat menambahkan data petugas baru
     </p>
 
       <div class="row">
@@ -42,22 +42,19 @@
                 </div>
               </div>
 
-              <div class="form-group row mb-4">
+              {{-- <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
                 <div class="col-sm-12 col-md-7">
-                  <select name="role" id="role" class="custom-select w-100 mt-3">
-                    <option value="1">Administrator</option>
-                    <option value="2">petugas</option>
-                </select>
+                  <input type="text" name="role" disabled value="admin" class="form-control">
                 </div>
-              </div>
+              </div> --}}
 
           
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                 <div class="col-sm-12 col-md-7">
                   <button type="submit" class="btn btn-primary">Create</button>
-                  <a href="" class="btn btn-primary">Kembali</a>
+                  <a href="/data-user" class="btn btn-primary">Kembali</a>
                 </div>
               </div>
 

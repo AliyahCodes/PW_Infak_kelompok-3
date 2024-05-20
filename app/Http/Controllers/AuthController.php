@@ -36,14 +36,16 @@ class AuthController extends Controller
             'nama_lengkap' => 'required',
             'email'=> 'required|unique:users,email,NULL,id',
             'password' => 'required|string',
-            'role' => 'required',
         ]);
     
+        $role = $request->filled('role') ? $request->role : 'admin';
+
+
         User::create([            
             'nama_lengkap' => $request->nama_lengkap,
             'email'=> $request->email,
-            'password' =>  bcrypt($request->password),
-            'role' => $request->role,
+            'password' => bcrypt($request->password),
+            'role' => $role,
         ]);
     
         return redirect('data-user')->with('success', 'Berhasil Menambahkan data baru');

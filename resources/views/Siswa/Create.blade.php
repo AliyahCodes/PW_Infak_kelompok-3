@@ -90,15 +90,16 @@
                                     </div>
 
 
-                                    {{-- <div class="form-group row mb-4">
-                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
-                <div class="col-sm-12 col-md-7">
-                  <select name="role" id="role" class="custom-select w-100 mt-3">
-                    <option value="1">Administrator</option>
-                    <option value="2">petugas</option>
-                </select>
-                </div>
-              </div> --}}
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="form-group row mb-4">
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nominal Infak Anda </label>
+                                            <div class="col-sm-12 col-md-7">
+                                                <input type="text" placeholder="Nominal infak Anda (opsional)" name="nominal_perjanjian"
+                                                    class="form-control">
+                                                    <small class="text-danger">Biarkan kosong jika tidak ada nominal infak.</small>
+                                                </div>
+                                        </div>
+                                    </div>
 
                                     <div class="col-sm-6 col-md-6">
                                         <div class="form-group row mb-4">

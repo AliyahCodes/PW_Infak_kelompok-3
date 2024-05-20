@@ -4,7 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Bulan;
+use App\Models\Pembayaran;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +29,17 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
         ]);
 
+        User::create([
+            'nis' => 12108772,
+            'nama_lengkap' => 'Aliyah',
+            'email' =>'aliyah@gmail.com',
+            'password' => bcrypt('12108772'),
+            'rombel' => 'PPLG XII-4',
+            'rayon' => 'Cicurug 7',
+            'no_phone_orang_tua' => '089786756543',
+            'nominal_perjanjian' => 0,
+            'role' => 'user',
+        ]);
 
     }
 }

@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string("nama_bank")->nullable();
-            $table->string("pemilik_bank");
-            $table->string("nominal");
-            $table->string('bukti_pembayaran');
-            $table->string('tanggal_pembayaran');
-            $table->boolean('status');
+            $table->string("pemilik_bank")->nullable();
+            $table->string("nominal")->nullable();
+            $table->string('bukti_pembayaran')->nullable();
+            $table->string('tanggal_pembayaran')->nullable();
+            $table->string('status')->nullable();
             $table->string('bulan')->nullable();
             // $table->date('done_time')->nullable();
             $table->timestamps();

@@ -9,9 +9,15 @@
     <div class="card-header">
       <h4>User</h4>
       <div class="card-header-action">
-        <a href="/siswa/create" class="btn btn-danger">Tambah Data <i class="fas fa-chevron-right"></i></a>
+        <div class="row">
+          <div class="col-md-12">
+            <a href="" class="btn btn-success"><strong>Export to Excel</strong> </a>
+            <a href="/siswa/create" class="btn btn-danger">Tambah Data <i class="fas fa-chevron-right"></i></a>
+          </div>
+        </div>
       </div>
     </div>
+
     <div class="card-body p-0">
       <div class="table-responsive table-invoice">
         <table class="table table-striped">

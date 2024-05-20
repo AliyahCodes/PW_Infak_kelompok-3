@@ -46,10 +46,7 @@
               <div class="form-group row mb-4">
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
                 <div class="col-sm-12 col-md-7">
-                  <select name="role" id="role" class="custom-select w-100 mt-3">
-                    <option value="1" {{ $user->role == '1' ? 'selected' : '' }}>Administrator</option>
-                    <option value="2" {{ $user->role == '2' ? 'selected' : '' }}>Petugas</option>
-                  </select>
+                  <input type="text" name="role" value="{{$user->role}}" disabled placeholder="Masukan Password" class="form-control">
                 </div>
               </div>
 
@@ -57,7 +54,7 @@
                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                 <div class="col-sm-12 col-md-7">
                   <button type="submit" class="btn btn-primary">Update</button>
-                  <a href="/user" class="btn btn-primary">Kembali</a>
+                  <a href="/data-user" class="btn btn-primary">Kembali</a>
                 </div>
               </div>
 

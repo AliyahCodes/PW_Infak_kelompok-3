@@ -19,21 +19,22 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <form action="{{ route ('pembayaran.form')}}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('pembayaran.form', $pem['id']) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                @method('PATCH')
                                 <div class="row">
 
                                     <div class="col-sm-6 col-md-6">
                                         <div class="form-group row mb-4">
-                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Bulan
+                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Bank
                                             </label>
                                             <div class="col-sm-12 col-md-7">
                                                 <select name="nama_bank" class="form-control">
-                                                            <option value="BCA" disabled>Pilih Bank</option>
+                                                            <option disabled>Pilih Bank</option>
                                                             <option value="BCA">BCA</option>
-                                                            <option value="BCA">BRI</option>
-                                                            <option value="BCA">BNI</option>
-                                                            <option value="BCA">MANDIRI</option>
+                                                            <option value="BRI">BRI</option>
+                                                            <option value="BNI">BNI</option>
+                                                            <option value="MANDIRI">MANDIRI</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -80,19 +81,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-sm-6 col-md-6">
-                                        <div class="form-group row mb-4">
-                                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Bulan
-                                            </label>
-                                            <div class="col-sm-12 col-md-7">
-                                                <select name="bulan" class="form-control">
-                                                        @foreach ($semuaBulan as $nomorBulan => $namaBulan)
-                                                            <option value="{{ $nomorBulan }}">{{ $namaBulan }}</option>
-                                                        @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <div class="col-sm-6 col-md-6">
                                         <div class="form-group row mb-4">

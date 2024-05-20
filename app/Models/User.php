@@ -29,6 +29,7 @@ class User extends Authenticatable
       'password',
       'no_phone_orang_tua',
       'nominal_perjanjian',
+      'role',
       
    ];
    
@@ -55,5 +56,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+    ];
+
+    protected $attributes = [
+        'nominal_perjanjian' => 0,
+        'role' => 'user', 
     ];
 }

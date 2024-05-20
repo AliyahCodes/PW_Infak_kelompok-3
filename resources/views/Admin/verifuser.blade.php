@@ -79,37 +79,57 @@
 <div class="verification-container">
     <div class="verification-details">
     <h3>Detail Transaksi</h3>
-    <p>Nis : <span >{{$detailUser->nis}}</span></p>
-    <p>Nama Siswa : <span >{{$detailUser->nama_lengkap}}</span></p>
+    <p>Nis : <span >{{$pem->user->nis}}</span></p>
+    <p>Nama Siswa : <span >{{$pem->user->nama_lengkap}}</span></p>
     <p>Nama Pemilik Bank: <span >{{$pem->pemilik_bank}}</span></p>
     <p>Nominal yang di transfer: <span >{{$pem->nominal}}</span></p>
     <p>Bulan yang dibayarkan: <span >{{$pem->bulan}}</span></p>
     <p>Tanggal Pembayaran: <span>{{$pem->tanggal_pembayaran}}</span></p>
+    @if ($pem->status == 'Lunas')
+            <p>Diverifikasi oleh: <span>{{$user->nama_lengkap}}</span></p>
+
+    @endif
+
+
   </div>
 
   <div class="verification-proof">
-    <h3>Bukti Transaksi {{$detailUser->nama_lengkap}}</h3>
+    <h3>Bukti Transaksi Pembayaran {{$pem->user->nama_lengkap}}</h3>
     <div class="app-card-body p-3 p-lg-4">
       <div class="row gx-5 gy-3">
-       <img src="{{asset('storage/bukti_pembayaran/'.$pem->bukti_pembayaran)}}" width="500px" alt="">
+       <img src="{{asset('storage/bukti_pembayaran/'.$pem->bukti_pembayaran)}}" width="300px" alt="">
       </div>
-  </div>  </div>
+  </div>  
+</div>
 
-  <div class="action-buttons">
-    <form action="{{ route('validasi.detail', $pem->user_id) }}"
+  @if ($pem->status == 'Menunggu Verfikasi' && auth()->user()->role == 'admin')
+
+
+
+      <div class="action-buttons">
+    <form action="{{ route('validasi.detail', $pem->id) }}"
       method="POST">
       @csrf
       @method('PATCH')
       <button type="submit" class="btn btn-primary" style="color: white; background:rgb(24, 175, 24)"> Validasi </button>
     </form>
     
-    <form action="{{ route('tolak.detail', $pem->user_id) }}"
+    <form action="{{ route('tolak.detail', $pem->id) }}"
       method="POST">
       @csrf
       @method('PATCH')
       <button type="submit" class="btn btn-danger" style="color: white"> Tolak </button>
     </form>  
   </div>
+
+  <a href="/admin/pembayaran" class="btn btn-warning" style="color: white"> Kembali </a>
+
+  @else
+    <a href="/transaksi" class="btn btn-warning" style="color: white"> Kembali </a>
+
+  @endif
+  
+
 
 </div>
 

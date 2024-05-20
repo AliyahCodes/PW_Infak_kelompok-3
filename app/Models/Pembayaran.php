@@ -28,5 +28,12 @@ public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function bulan()
+    {
+        return $this->belongsTo(Bulan::class);
+    }
+    
+
     
 }

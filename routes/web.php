@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\NominalController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportPdfController;
 use App\Http\Controllers\PembayaranController;
 
 /*
@@ -49,25 +50,25 @@ Route::middleware('auth')->group(function () {
     Route::put('/siswa/{id}', [SiswaController::class, 'update'])->name('update.siswa');
     Route::delete('/siswa/{id}', [SiswaController::class, 'destroy'])->name('delete_siswa');
 
+    Route::get('/user/riwayat/pembayaran', [SiswaController::class, 'riwayat_pembayaran']);
 
 
     Route::post('/perjanjian', [NominalController::class, 'nominal_form'])->name('nominal_form');
-
-    Route::get('transaksi', [PembayaranController::class, 'index'])->name('transaksi');
-
-    Route::get('/admin/transaksi/create', [PembayaranController::class, 'create']);
-    Route::post('/admin/transaksi/store', [PembayaranController::class, 'store'])->name('pembayaran.form');
-
+    
     Route::get('transaksi', [PembayaranController::class, 'index']);
-    Route::get('/admin/transaksi/store', [PembayaranController::class, 'store']);
+    Route::get('/admin/transaksi/create/{id}', [PembayaranController::class, 'create']);
+    Route::patch('/admin/transaksi/store/{id}', [PembayaranController::class, 'store'])->name('pembayaran.form');
+
 
     Route::get('/admin/pembayaran', [AdminController::class, 'admin_pembayaran'])->name('admin.pembayaran');
-    Route::get('/admin/detail/{pembayaran:user_id}', [AdminController::class, 'detail_pembayaran'])->name('detail.pembayaran');
-    Route::patch('/admin/validasi/{pembayaran:user_id}', [AdminController::class, 'validasi'])->name('validasi.detail');
-    Route::patch('/admin/tolak/{pembayaran:user_id}', [AdminController::class, 'tolak'])->name('tolak.detail');
+    Route::get('/admin/riwayat/pembayaran', [AdminController::class, 'riwayat_pembayaran']);
+    Route::get('/admin/tagihan/pembayaran', [AdminController::class, 'tagihan_pembayaran']);
+    Route::get('/admin/detail/{id}', [AdminController::class, 'detail_pembayaran']);
+    Route::patch('/admin/validasi/{id}', [AdminController::class, 'validasi'])->name('validasi.detail');
+    Route::patch('/admin/tolak/{id}', [AdminController::class, 'tolak'])->name('tolak.detail');
 
 
-    Route::get('/export-pdf', 'ExportPdfController@export')->name('export.pdf');
+    Route::get('/export/pdf/{id}', [ExportPdfController::class, 'export']);
 
 
 });

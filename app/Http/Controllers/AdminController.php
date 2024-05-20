@@ -5,35 +5,49 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
-{
-    public function detail_pembayaran($user_id){
-        // $pem = Pembayaran::find($user_id);
-        $detailUser = User::findOrFail($user_id);
-        $pem = Pembayaran::where('user_id', $user_id)->first();
-        return view('Admin.verifuser', compact('pem', 'detailUser'));
-    }
-
+{    
+    
     public function admin_pembayaran(){
   
-        $students = Pembayaran::with('user')->paginate(5);
+        $students = Pembayaran::with('user')->where('status', 'Menunggu Verfikasi')->paginate(15);
         return view('Admin.index', compact('students'));
     }
 
+    public function riwayat_pembayaran()
+    {
+        $students = Pembayaran::with('user')->where('status', 'Lunas')->paginate(12);
+        return view('Admin.riwayat', compact('students'));
+    }
+
+    public function tagihan_pembayaran()
+    {
+        $students = Pembayaran::with('user')->where('status', 'Belum dibayar')->orWhere('status', 'Verifikasi ditolak')->paginate(12);
+        return view('Admin.tagihan', compact('students'));
+    }
+
+    public function detail_pembayaran($id)
+    {
+        $user = User::find($id); 
+        $pem = Pembayaran::with('user')->find($id);
+        return view('Admin.verifuser', compact('pem', 'user'));
+    }
+
+
     
-    public function validasi($user_id){
+    public function validasi($id){
      
-          Pembayaran::where('user_id', '=', $user_id)->update([
-              'status' => 1,
+          Pembayaran::find($id)->update([
+              'status' => 'Lunas',
           ]);
           return redirect()->route('admin.pembayaran')->with('done', 'Berhasil Validasi');
       }
 
-    public function tolak($user_id){
-        Pembayaran::where('user_id', '=', $user_id)->update([
-            'status' => 2,
-            // 'done_time' => \Carbon\Carbon::now(),
+    public function tolak($id){
+        Pembayaran::find($id)->update([
+            'status' => 'Verifikasi ditolak',
         ]);
         return redirect()->route('admin.pembayaran')->with('done', 'Permintaan Di tolak');
     }

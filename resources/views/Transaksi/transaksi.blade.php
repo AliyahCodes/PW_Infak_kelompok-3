@@ -90,59 +90,48 @@
                         <th>Nama</th>
                         <th>Nis</th>
                         <th>Bulan</th>
+                        <th>Nominal</th>
                         <th>Tanggal Bayar</th>
-                        <th>Jumlah</th>
                         <th>Keterangan</th>
                         <th>Action</th>
                     </tr>
 
                     
-                    @foreach ($data as $monthNumber => $monthName)
+                    @foreach ($students as $student )
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{Auth::user()->nama_lengkap}}</td>
-                            <td>{{ Auth::user()->nis }}</td>
-                            <td>{{ $monthName }}</td>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$student->user->nama_lengkap}}</td>
+							<td>{{$student->user->nis}}</td>
+                            <td>{{$student->bulan}}</td>
+                            <td>{{$student->user->nominal_perjanjian}}</td>
                             <td>
-                                @if ($loop->first)
-                                    {{ $pembayaran->tanggal_pembayaran }}
+                                @if ($student->status == 'Belum dibayar')
+                                    <p class="text-center">-</p>
                                 @endif
-                            </td>
-                            <td>
-                                {{ Auth::user()->nominal_perjanjian }}
-                            </td>
-                            <td>
-                                @php
-                                    $status = 'Belum dibayar';
-                                @endphp
-                                @foreach ($pembayarans as $pembayaran)
-                                    @if ($pembayaran->status == 2)
-                                        @php
-                                            $status = 'Verifikasi di tolak';
-                                        @endphp
-                                    @elseif ($pembayaran->status == 1)
-                                        @php
-                                            $status = 'Lunas';
-                                        @endphp
+                                {{$student->tanggal_pembayaran}}</td>
+                            <td> 
+                                @if ($student->status == 'Belum dibayar')
+                                <a href="#" class="badge bg-danger text-white"  style="text-decoration: none;">{{$student->status}}</a>
+                             @elseif ($student->status == 'Menunggu Verfikasi')
+                               <a href="#" class="badge bg-warning text-white"  style="text-decoration: none;">{{$student->status}}</a>
 
-                                    @elseif ($pembayaran->status == 0)
-                                        @php
-                                            $status = 'Menunggu Verfikasi';
-                                        @endphp
-                                    @endif
-                                @endforeach
-                                {{ $status }}
+                           @elseif ($student->status == 'Lunas')
+                                <a href="#" class="badge bg-primary text-white"  style="text-decoration: none;">{{$student->status}}</a>
+                            @else
+                                <a href="#" class="badge bg-secondary text-white"  style="text-decoration: none;">{{$student->status}}</a>
+                           @endif
                             </td>
                             <td>
-                                @if ($status == 'Belum dibayar')
-                                    <a href="/admin/transaksi/create" class="btn btn-primary mt-2">Bayar</a>
-                                @elseif ($status == '1')
-                                    <a href="/User/edit/{{ $monthNumber + 1 }}" class="btn btn-primary mt-2">Batal</a>
-                                    {{-- <form action="/User/delete/{{ $monthNumber + 1 }}" method="POST" class="mt-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger mt-2">Download</button>
-                                    </form> --}}
+                                @if ($student->status == 'Belum dibayar')
+                                <a href="/admin/transaksi/create/{{$student['id']}}" class="btn btn-primary mt-2">Bayar</a>
+                                @elseif ($student->status == 'Menunggu Verfikasi')
+                                <a href="/admin/detail/{{$student['id']}}" class="btn btn-warning mt-2">Detail</a>
+
+                                @elseif ($student->status == 'Verifikasi ditolak')
+                                    <a href="/admin/transaksi/create/{{$student['id']}}" class="btn btn-primary mt-2">Bayar Ulang</a>
+                                @else 
+                                <a href="/export/pdf/{{$student['id']}}" target="_blank" class="btn btn-danger mt-2">Unduh</a>
+
                                 @endif
                             </td>
                         </tr>

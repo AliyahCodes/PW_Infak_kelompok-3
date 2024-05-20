@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use PDF;
 use App\Models\User;
+use App\Models\Pembayaran;
 
 class ExportPdfController extends Controller
 {
-    public function export()
+    public function export($id)
     {
-        $users = User::all();
-
-        $pdf = PDF::loadView('pdf.users', compact('users'));
-
-        return $pdf->download('users.pdf');
+        $user = User::find($id); 
+        $pem = Pembayaran::with('user')->find($id);
+        return view('pdf.cetakdetailpembayaran', compact('pem', 'user'));
     }
 }

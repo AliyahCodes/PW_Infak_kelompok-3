@@ -5,6 +5,8 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no |" name="viewport">
   <title>Infak | @yield('title')</title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM5zYf1L06V6u/Zl5PPSFztu1v/s2p9uCg6U0PK" crossorigin="anonymous">
+
   <!-- General CSS Files -->
   <link rel="stylesheet" href="{{asset('admin/modules/bootstrap/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{asset('admin/modules/fontawesome/css/all.min.css')}}">
@@ -58,10 +60,10 @@
         <div class="main-sidebar sidebar-style-2">
           <aside id="sidebar-wrapper">
             <div class="sidebar-brand">
-              <a href="index.html">Infaq SMK Wikrama</a>
+              <a href="index.html">Infaq</a>
             </div>
             <div class="sidebar-brand sidebar-brand-sm">
-              <a href="index.html">Infaq SMK Wikrama</a>
+              <a href="index.html">Infaq</a>
             </div>
             <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
@@ -75,14 +77,19 @@
                 @endif
 
               </li>
-              <li class="menu-header">Starter</li>
+              <li class="menu-header">Transaksi</li>
                 @if (auth()->user()->role == 'admin')
                 <li><a class="nav-link" href="/admin/pembayaran"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
-                <li><a class="nav-link" href="/data-siswa"><i class="fas fa-user"></i> <span>Data Siswa</span></a></li>
+                <li><a class="nav-link" href="/admin/tagihan/pembayaran"><i class="fas fa-file-invoice-dollar"></i><span>Data Tagihan</span></a></li>
+                <li><a class="nav-link" href="/admin/riwayat/pembayaran"><i class="fas fa-clipboard-check"></i><span>Riwayat Pembayaran</span></a></li>
+                <li class="menu-header">User</li>
+                <li><a class="nav-link" href="/data-siswa"><i class="fas fa-users"></i><span>Data Siswa</span></a></li>
                 <li><a class="nav-link" href="/data-user"><i class="fas fa-user"></i> <span>User</span></a></li>
                 @else
                 <li><a class="nav-link" href="/transaksi"><i class="fas fa-cart-plus"></i> <span>Transaksi</span></a></li>
-@endif
+                <li><a class="nav-link" href="/user/riwayat/pembayaran"><i class="fas fa-clipboard-check"></i><span>Riwayat Pembayaran</span></a></li>
+                @endif
+
         </div>
   
         <!-- Main Content -->

@@ -8,7 +8,7 @@
 @if (auth()->user()->role == 'admin')
        <div class="card">
         <div class="card-header">
-            <h4>Data Tagihan</h4>
+            <h4>Data Transaksi</h4>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive table-invoice">
@@ -22,6 +22,8 @@
                         <th>Jumlah</th>
                         <th>Action</th>
                     </tr>
+
+                    @if ($students->count() > 0)
                     @foreach ($students as $student )
                         <tr>
                             <td>{{$loop->iteration}}</td>
@@ -31,20 +33,30 @@
                             <td>{{$student->tanggal_pembayaran}}</td>
                             <td>{{$student->nominal}}</td>
                             <td>
-                                    <a href="/admin/detail/{{$student->user_id}}" class="btn btn-primary mt-2">Detail</a>
-                                    {{-- <a href="/User/edit" class="btn btn-primary mt-2">Batal</a>
-                                    <form action="/User/delete" method="POST" class="mt-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger mt-2">Unduh</button>
-                                    </form> --}}
+                                @if ($student->status == 'Menunggu Verfikasi')
+                                 <a href="/admin/detail/{{$student->id}}" class="btn btn-primary mt-2">Detail</a>
+                                @else
+                                    <a href="/export/pdf/{{$student->id}}" class="btn btn-danger mt-2">Unduh</a>
+                                @endif
+                                  
                             </td>
                         </tr>
                         @endforeach
+
+                        @else
+                        <td colspan="7">
+                            <div class="badge text-danger d-flex justify-content-center" style="text-decoration: none;">Data Kosong</div>
+                        </td>
+                        @endif
                 </table>
             </div>
         </div>
     </div>
 @endif
+
+<div>
+    {{ $students->links() }}
+</div>
+    
 
 @endsection

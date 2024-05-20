@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Bulan;
 use App\Helpers\myHelpers;
 use App\Models\Pembayaran;
 use Illuminate\Http\Request;
@@ -16,26 +17,24 @@ class PembayaranController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $pembayarans = Pembayaran::where('user_id', $userId)->get();
-        $data = myHelpers::getAllMonths();
-        return view('Transaksi.transaksi', compact('pembayarans', 'data'));
+        $students = Pembayaran::with('user')->where('user_id', $userId)->get();
+        return view('Transaksi.transaksi', compact('students'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-      $semuaBulan = myHelpers::getAllMonths();
-      return view('Transaksi.store', compact('semuaBulan'));
-
+    public function create($id){
+        $pem = Pembayaran::find($id);
+        return view('Transaksi.store', compact('pem'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
+       
         $request->validate([
             'nama_bank' => 'required',
             'pemilik_bank' => 'required',
@@ -44,22 +43,6 @@ class PembayaranController extends Controller
             'tanggal_pembayaran' => 'required',
         ]);
 
-        $bulan = $request->bulan;
-        $namaBulan = myHelpers::getMonthName($bulan);
-    
-        $jumlahInfakBulanan = Auth::user()->nominal_perjanjian;
-        $nominal = $request->input('nominal');
-        $jumlahBulan = floor($nominal / $jumlahInfakBulanan);
-    
-        // Ambil bulan dan tahun dari tanggal pembayaran
-        $tanggalPembayaran = $request->input('tanggal_pembayaran');
-        $bulanPembayaran = date('m', strtotime($tanggalPembayaran));
-        $tahunPembayaran = date('Y', strtotime($tanggalPembayaran));
-    
-        for ($i = 0; $i < $jumlahBulan; $i++) {
-            $tanggalPembayaran = date('Y-m-d', strtotime($request->input('tanggal_pembayaran') . " +$i month"));
-            
-            // Lakukan proses penyimpanan pembayaran sesuai dengan jumlah bulan
             $newName = '';
             if ($request->file('bukti_pembayaran')) {
                 $extension = $request->file('bukti_pembayaran')->getClientOriginalExtension();
@@ -67,51 +50,19 @@ class PembayaranController extends Controller
                 $request->file('bukti_pembayaran')->storeAs('bukti_pembayaran', $newName);
             }
 
-    
-            // Simpan pembayaran dengan nama unik file yang diunggah
-            Pembayaran::create([
+            Pembayaran::find($id)->update([
                 'nama_bank' => $request->nama_bank,
                 'pemilik_bank' => $request->pemilik_bank,
-                'nominal' => $jumlahInfakBulanan,
+                'nominal' => $request->nominal,
                 'bukti_pembayaran' => $newName,
-                'tanggal_pembayaran' => $tanggalPembayaran,
-                'bulan' => $namaBulan,
-                'status' => 0,
+                'tanggal_pembayaran' => $request->tanggal_pembayaran,
+                'status' => 'Menunggu Verfikasi',
                 'user_id' => Auth::user()->id,
             ]);
-        }
-    
-        // Sisa nominal jika ada
-        $sisaNominal = $nominal % $jumlahInfakBulanan;
-        
-        if ($sisaNominal > 0) {
-            $newName = '';
-            if ($request->file('bukti_pembayaran')) {
-                $extension = $request->file('bukti_pembayaran')->getClientOriginalExtension();
-                $newName = $request->laporan. '-'.now()->timestamp.'.'.$extension;
-                $request->file('bukti_pembayaran')->storeAs('bukti_pembayaran', $newName);
-            }
-            $request['bukti_pembayaran'] = $newName;
-    
-            // Hitung tanggal pembayaran untuk sisa nominal
-            $tanggalPembayaranSisa = date('Y-m-d', strtotime($request->input('tanggal_pembayaran') . " +$jumlahBulan month"));
-    
-            // Simpan pembayaran dengan sisa nominal
-            Pembayaran::create([
-                'nama_bank' => $request->nama_bank,
-                'pemilik_bank' => $request->pemilik_bank,
-                'nominal' => $sisaNominal,
-                'bukti_pembayaran' => $newName,
-                'tanggal_pembayaran' => $tanggalPembayaranSisa,
-                'bulan' => $namaBulan,
-                'status' => 0,
-                'user_id' => Auth::user()->id,
-            ]);
-        }
     
         return redirect('transaksi')->with('success', 'Pembayaran sedang di verifikasi, harap tunggu informasi selanjutnya');
     }
-
+    
     /**
      * Display the specified resource.
      */
